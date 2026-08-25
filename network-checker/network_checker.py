@@ -35,17 +35,29 @@ if result.returncode == 0:
 else:
     print("Ping: FAILED")
 
-# Port 443 check
+# Ask for port
 print("\n--- Port Check ---")
 
+try:
+    port = int(input("Enter a port to check: "))
+
+    if port < 1 or port > 65535:
+        print("Invalid port. Use a number between 1 and 65535.")
+        exit()
+
+except ValueError:
+    print("Invalid input. Port must be a number.")
+    exit()
+
+# Port check
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.settimeout(3)
 
-port_result = sock.connect_ex((host, 443))
+port_result = sock.connect_ex((host, port))
 
 if port_result == 0:
-    print("Port 443: OPEN")
+    print(f"Port {port}: OPEN")
 else:
-    print("Port 443: CLOSED or unreachable")
+    print(f"Port {port}: CLOSED or unreachable")
 
 sock.close()
