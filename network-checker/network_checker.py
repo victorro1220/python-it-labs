@@ -7,11 +7,18 @@ print("Network Checker")
 host = input("Enter a host or website: ")
 
 # DNS resolution
-ip_address = socket.gethostbyname(host)
-
 print("\n--- DNS Check ---")
-print("Host:", host)
-print("IP Address:", ip_address)
+
+try:
+    ip_address = socket.gethostbyname(host)
+    print("Host:", host)
+    print("IP Address:", ip_address)
+
+except socket.gaierror:
+    print("DNS: FAILED")
+    print("Unable to resolve host.")
+    print("Network check stopped safely.")
+    exit()
 
 # Ping check
 print("\n--- Ping Check ---")
