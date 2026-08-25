@@ -1,4 +1,4 @@
-log_file = "log-analyzer/sample.log"
+log_file = "log-analyzer/sample_log.txt"
 
 info_count = 0
 warning_count = 0

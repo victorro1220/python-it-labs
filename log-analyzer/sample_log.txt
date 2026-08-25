@@ -1,0 +1,8 @@
+2026-08-25 14:00:01 INFO User login successful
+2026-08-25 14:01:12 WARNING High memory usage detected
+2026-08-25 14:02:05 ERROR Database connection failed
+2026-08-25 14:03:20 INFO Backup started
+2026-08-25 14:04:42 ERROR Authentication failed for user admin
+2026-08-25 14:05:10 WARNING Disk usage above threshold
+2026-08-25 14:06:33 INFO Backup completed
+2026-08-25 14:07:51 ERROR Network timeout
