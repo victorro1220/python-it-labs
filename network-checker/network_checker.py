@@ -2,4 +2,5 @@ print("Network Checker")
 
 host = input("Enter a host or website: ")
 
-print("You entered:", host)
+print("Checking:", host)
+print("Status: Test started")
