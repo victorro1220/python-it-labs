@@ -35,29 +35,32 @@ if result.returncode == 0:
 else:
     print("Ping: FAILED")
 
-# Ask for port
-print("\n--- Port Check ---")
 
-try:
-    port = int(input("Enter a port to check: "))
+# Function to check a port
+def check_port(host, port):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.settimeout(2)
 
-    if port < 1 or port > 65535:
-        print("Invalid port. Use a number between 1 and 65535.")
-        exit()
+    result = sock.connect_ex((host, port))
 
-except ValueError:
-    print("Invalid input. Port must be a number.")
-    exit()
+    sock.close()
 
-# Port check
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.settimeout(3)
+    return result == 0
 
-port_result = sock.connect_ex((host, port))
 
-if port_result == 0:
-    print(f"Port {port}: OPEN")
-else:
-    print(f"Port {port}: CLOSED or unreachable")
+# Common ports
+ports = {
+    22: "SSH",
+    53: "DNS",
+    80: "HTTP",
+    443: "HTTPS",
+    3389: "RDP"
+}
 
-sock.close()
+print("\n--- Common Port Check ---")
+
+for port, service in ports.items():
+    if check_port(host, port):
+        print(f"Port {port} ({service}): OPEN")
+    else:
+        print(f"Port {port} ({service}): CLOSED or unreachable")
